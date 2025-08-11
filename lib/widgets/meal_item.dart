@@ -5,8 +5,9 @@ import 'package:transparent_image/transparent_image.dart';
 
 class MealItem extends StatelessWidget {
   final Meal meal;
+  final void Function() onSelectMeal;
 
-  const MealItem({required this.meal, super.key});
+  const MealItem({required this.meal, required this.onSelectMeal, super.key});
 
   String get complexityText {
     return meal.complexity.name[0].toUpperCase() +
@@ -27,7 +28,7 @@ class MealItem extends StatelessWidget {
           Clip.hardEdge, // Child Stack is removes the shape by default, but with this line we can prevent it.
       elevation: 2,
       child: InkWell(
-        onTap: () {},
+        onTap: onSelectMeal,
         // splashColor: Theme.of(context).primaryColor,
         splashColor: Colors.amberAccent,
         borderRadius: BorderRadius.circular(16),
