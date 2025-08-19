@@ -10,12 +10,16 @@ class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({super.key});
 
   void _selectCategory(BuildContext context, Category category) {
-    final mealsByCategory = dummyMeals.where((Meal meal) => meal.categories.contains(category.id)).toList();
+    final mealsByCategory =
+        dummyMeals
+            .where((Meal meal) => meal.categories.contains(category.id))
+            .toList();
 
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (ctx) => MealsScreen(title: category.title, meals: mealsByCategory),
+        builder:
+            (ctx) => MealsScreen(title: category.title, meals: mealsByCategory),
       ),
     );
   }
@@ -23,22 +27,22 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView(
-        padding: EdgeInsets.all(12),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 3 / 2,
-          crossAxisSpacing: 20,
-        ),
-        children: [
-          ...availableCategories.map(
-            (Category category) => CategoryGridItem(
-              category: category,
-              onSelectCategory: () {
-                _selectCategory(context, category);
-              },
-            ),
+      padding: EdgeInsets.all(12),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 3 / 2,
+        crossAxisSpacing: 20,
+      ),
+      children: [
+        ...availableCategories.map(
+          (Category category) => CategoryGridItem(
+            category: category,
+            onSelectCategory: () {
+              _selectCategory(context, category);
+            },
           ),
-        ],
+        ),
+      ],
     );
   }
 }
